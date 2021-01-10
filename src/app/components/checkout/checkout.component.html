@@ -1,42 +1,48 @@
-<p class="display-4 mb-4">
-  Checkout Page
-</p>
-<div class="row">
-  <table class="table">
-    <tr>
-      <td>#</td>
-      <td>Name</td>
-      <td>Price</td>
-      <td>Quantity</td>
-      <td>Total</td>
-      <td>Actions</td>
-    </tr>
-    <tr *ngFor="let product of items; let i = index">
-      <td><img class="align-self-center" src="{{ product.image }}" style="width: 75px;"></td>
-      <td><h5 class="mt-0 mb-1">{{ product.title }}</h5>
-        {{ product.description }}</td>
-      <td>{{ product.price | currency:"EGP" }}</td>
-      <td><input type="number" value="1" class="form-control"></td>
-      <td>{{ product.price }}</td>
-      <td><button type="button" class="btn btn-sm btn-outline-danger" (click)="removeFromCart(i)">Remove</button></td>
-    </tr>
-  </table>
+<div *ngIf="!submitted">
+  <p class="display-4 mb-4">
+    Checkout Page
+  </p>
+  <div class="row">
+    <table class="table">
+      <tr>
+        <td>#</td>
+        <td>Name</td>
+        <td>Price</td>
+        <td>Quantity</td>
+        <td>Total</td>
+        <td>Actions</td>
+      </tr>
+      <tr *ngFor="let product of items; let i = index">
+        <td><img class="align-self-center" src="{{ product.image }}" style="width: 75px;"></td>
+        <td><h5 class="mt-0 mb-1">{{ product.title }}</h5>
+          {{ product.description }}</td>
+        <td>{{ product.price | currency:"EGP" }}</td>
+        <td><input type="number" value="1" class="form-control"></td>
+        <td>{{ product.price }}</td>
+        <td><button type="button" class="btn btn-sm btn-outline-danger" (click)="removeFromCart(i)">Remove</button></td>
+      </tr>
+    </table>
 
+  </div>
+  <div class="row">
+    <form>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input id="address" type="text" formControlName="address" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input id="name" type="text" formControlName="phone" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="name" type="text" formControlName="email" class="form-control" required />
+      </div>
+      <button class="button" type="submit" class="btn btn-primary" (click)="submitCheckout()">Complete Order</button>
+    </form>
+  </div>
 </div>
-<div class="row">
-  <form>
-    <div class="form-group">
-      <label for="address">Address</label>
-      <input id="address" type="text" formControlName="address" class="form-control" required />
-    </div>
-    <div class="form-group">
-      <label for="phone">Phone</label>
-      <input id="name" type="text" formControlName="phone" class="form-control" required />
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input id="name" type="text" formControlName="email" class="form-control" required />
-    </div>
-    <button class="button" type="submit" class="btn btn-primary" (click)="submitCheckout()">Complete Order</button>
-  </form>
+
+<div *ngIf="submitted" class="mt-5">
+  <p class="alert alert-success">Thank you for your Order.</p>
 </div>

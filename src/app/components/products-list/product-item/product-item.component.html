@@ -10,7 +10,7 @@
         <button *ngIf="inCart" type="button" class="btn btn-sm btn-outline-secondary" (click)="decreaseQuantity(product)">-</button>
         <button *ngIf="inCart" type="button" class="btn btn-sm btn-outline-secondary" (click)="increaseQuantity(product)">+</button>
       </div>
-      <small class="text-muted">{{ product.price | currency }}</small>
+      <small class="text-muted">{{ product.price | currency:"EGP" }}</small>
     </div>
   </div>
 </div>
