@@ -6,5 +6,7 @@
   </div>
 </div>
 <div *ngIf="cartItems.length > 0" class="dropdown-divider"></div>
+<p *ngIf="cartItems.length > 0" class="alert alert-info">Total: {{ cartTotal | currency:'EGP'}}</p>
+<div *ngIf="cartItems.length > 0" class="dropdown-divider"></div>
 <a *ngIf="cartItems.length > 0" class="dropdown-item bg-primary checkout-button" [routerLink]="['/checkout']">Checkout</a>
 
