@@ -17,8 +17,8 @@
         <td><h5 class="mt-0 mb-1">{{ product.title }}</h5>
           {{ product.description }}</td>
         <td>{{ product.price | currency:"EGP" }}</td>
-        <td><input type="number" value="1" class="form-control"></td>
-        <td>{{ product.price }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.price * product.quantity }}</td>
         <td><button type="button" class="btn btn-sm btn-outline-danger" (click)="removeFromCart(i)">Remove</button></td>
       </tr>
     </table>
@@ -38,7 +38,7 @@
         <label for="email">Email</label>
         <input id="name" type="text" formControlName="email" class="form-control" required />
       </div>
-      <button class="button" type="submit" class="btn btn-primary" (click)="submitCheckout()">Complete Order</button>
+      <button class="button" type="submit" class="btn btn-primary mb-5" (click)="submitCheckout()">Complete Order</button>
     </form>
   </div>
 </div>
