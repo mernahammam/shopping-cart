@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { timeStamp } from 'console';
 import { Product } from 'src/app/models/product';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+const apiUrl = "https://fakestoreapi.com/products";
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +18,9 @@ export class ProductService {
     new Product(5, "Product 5", 500, "This is the description of Product 5", "Clothes", "./assets/product.png"),
     new Product(6, "Product 6", 600, "This is the description of Product 6", "Clothes", "./assets/product.png"),
   ];
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getProducts(){
-    return this.productsList;
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(apiUrl);
   }
 }
