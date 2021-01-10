@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/models/product';
+import { CartHandlerService } from 'src/app/services/cart-handler.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -9,9 +10,16 @@ import { Product } from 'src/app/models/product';
 export class CartItemComponent implements OnInit {
 
   @Input() item: Product;
-  constructor() { }
+  constructor(private cartHandler: CartHandlerService) { }
 
   ngOnInit(): void {
+    this.cartHandler.increaseItemForCart().subscribe((product: Product) => {
+      this.item.quantity++
+    });
+
+    this.cartHandler.decreaseItemForCart().subscribe((product: Product) => {
+      this.item.quantity--
+    });
   }
 
 }

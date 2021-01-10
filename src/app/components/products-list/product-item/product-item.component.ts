@@ -21,4 +21,12 @@ export class ProductItemComponent implements OnInit {
     this.inCart = true;
   }
 
+  decreaseQuantity(){
+    this.cartHandler.decreaseItemToCart(this.product);
+  }
+
+  increaseQuantity(){
+    this.cartHandler.increaseItemToCart(this.product);
+  }
+
 }

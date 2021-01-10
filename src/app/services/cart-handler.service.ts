@@ -16,4 +16,20 @@ export class CartHandlerService {
   getItemforCart(){
     return this.subject.asObservable();
   }
+
+  decreaseItemToCart(product){
+    this.subject.next(product);
+  }
+
+  increaseItemToCart(product){
+    this.subject.next(product);
+  }
+
+  decreaseItemForCart(){
+    return this.subject.asObservable();
+  }
+
+  increaseItemForCart(){
+    return this.subject.asObservable();
+  }
 }
