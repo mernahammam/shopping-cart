@@ -1,1 +1,2 @@
-<p>cart-item works!</p>
+<span><img [src]="item.image" class="top-cart-image"> {{ item.title | slice:0:15 }}...</span>
+<span class="float-right">{{ item.quantity }} X {{ item.price | currency:'EGP' }}</span>

@@ -1,1 +1,10 @@
-<p>cart works!</p>
+<p *ngIf="cartItems.length === 0" class="alert alert-info">Your Cart is Empty</p>
+
+<div *ngIf="cartItems.length > 0">
+  <div *ngFor="let item of cartItems" class="cart-item mb-2" >
+    <app-cart-item [item] = "item"></app-cart-item>
+  </div>
+</div>
+<div *ngIf="cartItems.length > 0" class="dropdown-divider"></div>
+<a *ngIf="cartItems.length > 0" class="dropdown-item bg-primary checkout-button" [routerLink]="['/checkout']">Checkout</a>
+
