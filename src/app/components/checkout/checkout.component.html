@@ -1,4 +1,4 @@
-<div *ngIf="!submitted">
+<div>
   <p class="display-4 mb-4">
     Checkout Page
   </p>
@@ -26,27 +26,6 @@
         <td colspan="2"><p class="alert alert-primary">{{ checkoutTotal | currency:"EGP" }}</p></td>
       </tr>
     </table>
-
+    </div>
+    <a class="btn btn-primary mb-5 mt-5" [routerLink]="['/complete-order']">Complete Order</a>
   </div>
-  <div class="row">
-    <form>
-      <div class="form-group">
-        <label for="address">Address</label>
-        <input id="address" type="text" formControlName="address" class="form-control" required />
-      </div>
-      <div class="form-group">
-        <label for="phone">Phone</label>
-        <input id="name" type="text" formControlName="phone" class="form-control" required />
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input id="name" type="text" formControlName="email" class="form-control" required />
-      </div>
-      <button class="button" type="submit" class="btn btn-primary mb-5" (click)="submitCheckout()">Complete Order</button>
-    </form>
-  </div>
-</div>
-
-<div *ngIf="submitted" class="mt-5">
-  <p class="alert alert-success">Thank you for your Order.</p>
-</div>

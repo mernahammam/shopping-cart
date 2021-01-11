@@ -1,0 +1,27 @@
+<div class="container mt-5 mb-5" *ngIf="!submitted">
+  <form [formGroup]='reactiveForm' (ngSubmit)="submitOrder()" class="w-50 m-auto mt-5">
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input [class.is-invalid]="reactiveForm.get('address').invalid==true && reactiveForm.get('phone').touched==true"  formControlName="address" type="text" class="form-control">
+      <small *ngIf="reactiveForm.get('address').invalid == true && reactiveForm.get('phone').touched==true" id="address" class="form-text text-muted mt-2 alert alert-danger">Invalid Address.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Your Phone</label>
+      <input [class.is-invalid]="reactiveForm.get('phone').invalid==true && reactiveForm.get('phone').touched==true" formControlName="phone" type="text" class="form-control" >
+      <small *ngIf="reactiveForm.get('phone').invalid==true && reactiveForm.get('phone').touched==true"  id="phone" class="form-text text-muted mt-2 alert alert-danger">Invalid Phone Number.</small>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Your Email</label>
+      <input [class.is-invalid]="reactiveForm.get('email').invalid == true && reactiveForm.get('email').touched==true" formControlName="email" type="text" class="form-control ">
+      <small *ngIf="reactiveForm.get('email').invalid == true && reactiveForm.get('email').touched == true" id="email" class="form-text  text-muted mt-2 alert alert-danger">Invalid Email.</small>
+    </div>
+
+    <button [disabled]="reactiveForm.invalid"  type="submit" class="btn btn-success" (submit)="submitOrder()">Order Now</button>
+  </form>
+</div>
+
+<div *ngIf="submitted" class="mt-5">
+  <p class="alert alert-success">Thank You for Your Order.</p>
+</div>
