@@ -63,6 +63,7 @@ export class CheckoutComponent implements OnInit {
   removeFromCart(product) {
     this.items.splice(product, 1);
     localStorage.setItem("cartItems", JSON.stringify(this.items));
+    this.calculateTotal();
   }
 
 }

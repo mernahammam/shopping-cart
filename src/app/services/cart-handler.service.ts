@@ -22,7 +22,7 @@ export class CartHandlerService {
   //   return this.subject.asObservable();
   // }
 
-  getCartItems(){
+  getCartItems() {
     return this.cartItems;
   }
 
