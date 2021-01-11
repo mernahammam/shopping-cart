@@ -24,40 +24,41 @@ export class CartComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.cartHandler.getItemforCart().subscribe((product: Product) => {
-      this.getProductInCart(product);
-    });
-  }
-
-
-  getProductInCart(product: Product){
-
-    let productExists = false;
-
-    for(let i in this.cartItems){
-      if(this.cartItems[i].id === product.id){
-        this.cartItems[i].quantity++
-        productExists = true;
-        break;
-      }
-    }
-
-    if(!productExists){
-      this.cartItems.push({
-        id: product.id,
-        title: product.title,
-        price: product.price,
-        quantity: 1,
-        description: product.description,
-        category: product.category,
-        image: product.image
-      })
-    }
-
+    // this.cartHandler.getItemforCart().subscribe((product: Product) => {
+    //   this.getProductInCart(product);
+    // });
+    this.cartItems = JSON.parse(localStorage.getItem("cartItems"));
     this.cartTotal = 0;
     this.cartItems.forEach(item => {
       this.cartTotal += (item.quantity * item.price)
     });
   }
+
+
+  // getProductInCart(product: Product){
+  //   let productExists = false;
+  //   for(let i in this.cartItems){
+  //     if(this.cartItems[i].id === product.id){
+  //       this.cartItems[i].quantity++
+  //       productExists = true;
+  //       break;
+  //     }
+  //   }
+  //   if(!productExists){
+  //     this.cartItems.push({
+  //       id: product.id,
+  //       title: product.title,
+  //       price: product.price,
+  //       quantity: 1,
+  //       description: product.description,
+  //       category: product.category,
+  //       image: product.image
+  //     })
+  //   }
+  //   this.cartTotal = 0;
+  //   this.cartItems.forEach(item => {
+  //     this.cartTotal += (item.quantity * item.price)
+  //   });
+  // }
 
 }

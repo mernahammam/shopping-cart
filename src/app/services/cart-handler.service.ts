@@ -12,13 +12,15 @@ export class CartHandlerService {
   constructor() { }
 
   sendItemToCart(product){
-    this.subject.next(product);
+    //this.subject.next(product);
+    product.quantity = 1;
     this.cartItems.push(product);
+    localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
   }
 
-  getItemforCart(){
-    return this.subject.asObservable();
-  }
+  // getItemforCart(){
+  //   return this.subject.asObservable();
+  // }
 
   getCartItems(){
     return this.cartItems;

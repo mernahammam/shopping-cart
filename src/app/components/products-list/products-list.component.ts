@@ -15,14 +15,15 @@ export class ProductsListComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProducts().subscribe(products => {
       this.products = products;
+      localStorage.setItem("productsList", JSON.stringify(this.products));
     });
   }
 
-    filterProducts(sc: string) {
-      if(sc != ""){
-          this.products = this.products.filter((product) =>
-                product.title.toLowerCase().includes(sc.toLowerCase())
-          );
-      }
+  filterProducts(sc: string) {
+    if(sc != ""){
+        this.products = this.products.filter((product) =>
+              product.title.toLowerCase().includes(sc.toLowerCase())
+        );
     }
+  }
 }
