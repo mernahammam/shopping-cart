@@ -11,9 +11,17 @@ export class ProductItemComponent implements OnInit {
 
   @Input() product: Product;
   inCart = false;
+  cartItems: Product[] = [];
   constructor(private cartHandler: CartHandlerService ) { }
 
   ngOnInit(): void {
+    this.cartItems = JSON.parse(localStorage.getItem("cartItems"));
+    for(let i in this.cartItems){
+      if(this.cartItems[i].id === this.product.id){
+        this.inCart = true;
+        break;
+      }
+    }
   }
 
   addProductToCart(){
@@ -21,12 +29,26 @@ export class ProductItemComponent implements OnInit {
     this.inCart = true;
   }
 
-  decreaseQuantity(){
-    this.cartHandler.decreaseItemToCart(this.product);
+  decreaseQuantity(product){
+    for(let i in this.cartItems){
+      if(this.cartItems[i].id === product.id){
+        if(this.cartItems[i].quantity > 1){
+          this.cartItems[i].quantity--
+        }
+        localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+        break;
+      }
+    }
   }
 
-  increaseQuantity(){
-    this.cartHandler.increaseItemToCart(this.product);
+  increaseQuantity(product){
+    for(let i in this.cartItems){
+      if(this.cartItems[i].id === product.id){
+        this.cartItems[i].quantity++
+        localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+        break;
+      }
+    }
   }
 
 }
