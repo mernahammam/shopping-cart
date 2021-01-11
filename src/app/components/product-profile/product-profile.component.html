@@ -5,11 +5,15 @@
   <h3>Title: {{ product.title }}</h3>
   <h4>Price: {{ product.price | currency:"EGP" }}</h4>
   <p>Description: {{ product.description }}</p>
+
+  <div *ngIf="inCart">
+    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="decreaseQuantity(product)">-</button>
+     {{ product.quantity }}
+    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="increaseQuantity(product)">+</button>
+  </div>
+  <div *ngIf="!inCart">
+    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="decreaseQuantity(product)">Add To Cart</button>
+  </div>
 </div>
 
-<div *ngIf="inCart">
-  <button type="button" class="btn btn-sm btn-outline-secondary" (click)="decreaseQuantity(product)">-</button> {{ product.quantity }} <button type="button" class="btn btn-sm btn-outline-secondary" (click)="increaseQuantity(product)">+</button>
-</div>
-<div *ngIf="!inCart">
-  <button type="button" class="btn btn-sm btn-outline-secondary" (click)="decreaseQuantity(product)">Add To Cart</button>
-</div>
+

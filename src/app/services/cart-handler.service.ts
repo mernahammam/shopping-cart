@@ -14,6 +14,7 @@ export class CartHandlerService {
   sendItemToCart(product){
     //this.subject.next(product);
     product.quantity = 1;
+    this.cartItems = JSON.parse(localStorage.getItem("cartItems"));
     this.cartItems.push(product);
     localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
   }

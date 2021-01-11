@@ -19,6 +19,7 @@ export class ProductItemComponent implements OnInit {
     for(let i in this.cartItems){
       if(this.cartItems[i].id === this.product.id){
         this.inCart = true;
+        this.product.quantity = this.cartItems[i].quantity;
         break;
       }
     }
@@ -34,6 +35,7 @@ export class ProductItemComponent implements OnInit {
       if(this.cartItems[i].id === product.id){
         if(this.cartItems[i].quantity > 1){
           this.cartItems[i].quantity--
+          product.quantity--
         }
         localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
         break;
@@ -45,6 +47,7 @@ export class ProductItemComponent implements OnInit {
     for(let i in this.cartItems){
       if(this.cartItems[i].id === product.id){
         this.cartItems[i].quantity++
+        product.quantity++
         localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
         break;
       }

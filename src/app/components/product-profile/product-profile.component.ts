@@ -26,12 +26,15 @@ export class ProductProfileComponent implements OnInit {
       if(productIdFromRoute === this.cartItems[i].id){
         this.product = this.cartItems[i];
         this.inCart = true;
+        console.log(this.inCart);
         break;
-      } else {
-        this.http.get<Product> ("https://fakestoreapi.com/products/" + productIdFromRoute).subscribe((product: Product) => {
-          this.product = product;
-        });
       }
+    }
+    if(this.inCart === false) {
+      this.http.get<Product> ("https://fakestoreapi.com/products/" + productIdFromRoute).subscribe((product: Product) => {
+        this.product = product;
+        console.log(this.inCart);
+      });
     }
     console.log(this.product);
     console.log(this.product.quantity);

@@ -8,6 +8,7 @@
         <a [routerLink]="['/products' , product.id]" class="btn btn-sm btn-outline-secondary">View</a>
         <button *ngIf="!inCart" type="button" class="btn btn-sm btn-outline-secondary" (click)="addProductToCart(product)">Add to Cart</button>
         <button *ngIf="inCart" type="button" class="btn btn-sm btn-outline-secondary" (click)="decreaseQuantity(product)">-</button>
+        <p *ngIf="inCart" class="mr-2 ml-2">{{ product.quantity }}</p>
         <button *ngIf="inCart" type="button" class="btn btn-sm btn-outline-secondary" (click)="increaseQuantity(product)">+</button>
       </div>
       <small class="text-muted">{{ product.price | currency:"EGP" }}</small>
