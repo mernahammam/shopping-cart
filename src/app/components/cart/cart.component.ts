@@ -27,7 +27,7 @@ export class CartComponent implements OnInit {
     // this.cartHandler.getItemforCart().subscribe((product: Product) => {
     //   this.getProductInCart(product);
     // });
-    if(localStorage.getItem("cartItems").length == 0){
+    if(localStorage.getItem("cartItems") === null){
       localStorage.setItem("cartItems", "[{}]");
     } else {
       //console.log(localStorage.getItem("cartItems").length);
