@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { CartHandlerService } from 'src/app/services/cart-handler.service';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class ProductProfileComponent implements OnInit {
   cartItems: Product[] = [];
   constructor(
     private route : ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private cartHandler: CartHandlerService
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +42,10 @@ export class ProductProfileComponent implements OnInit {
     console.log(this.product.quantity);
   }
 
+  addProductToCart(){
+    this.cartHandler.sendItemToCart(this.product);
+    this.inCart = true;
+  }
 
   decreaseQuantity(product){
     for(let i in this.cartItems){
