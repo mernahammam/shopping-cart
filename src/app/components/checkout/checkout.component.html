@@ -21,6 +21,10 @@
         <td>{{ product.price * product.quantity }}</td>
         <td><button type="button" class="btn btn-sm btn-outline-danger" (click)="removeFromCart(i)">Remove</button></td>
       </tr>
+      <tr>
+        <td colspan="4">Grand Total</td>
+        <td colspan="2"><p class="alert alert-primary">{{ checkoutTotal | currency:"EGP" }}</p></td>
+      </tr>
     </table>
 
   </div>

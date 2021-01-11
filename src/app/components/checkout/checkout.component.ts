@@ -17,11 +17,19 @@ export class CheckoutComponent implements OnInit {
   ];
 
   submitted = false;
-
+  checkoutTotal = 0;
   constructor(private cartHandler: CartHandlerService) { }
 
   ngOnInit(): void {
-    this.items = this.cartHandler.getCartItems();
+    this.items = JSON.parse(localStorage.getItem("cartItems"));
+    this.calculateTotal();
+  }
+
+  calculateTotal() {
+    this.checkoutTotal = 0;
+    this.items.forEach(item => {
+      this.checkoutTotal += (item.quantity * item.price)
+    });
   }
 
   submitCheckout(){
@@ -30,6 +38,7 @@ export class CheckoutComponent implements OnInit {
 
   removeFromCart(product) {
     this.items.splice(product, 1);
+    localStorage.setItem("cartItems", JSON.stringify(this.items));
   }
 
 }
