@@ -18,4 +18,11 @@ export class ProductsListComponent implements OnInit {
     });
   }
 
+    filterProducts(sc: string) {
+      if(sc != ""){
+          this.products = this.products.filter((product) =>
+                product.title.toLowerCase().includes(sc.toLowerCase())
+          );
+      }
+    }
 }
