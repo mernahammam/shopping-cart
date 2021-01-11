@@ -27,11 +27,16 @@ export class CartComponent implements OnInit {
     // this.cartHandler.getItemforCart().subscribe((product: Product) => {
     //   this.getProductInCart(product);
     // });
-    this.cartItems = JSON.parse(localStorage.getItem("cartItems"));
-    this.cartTotal = 0;
-    this.cartItems.forEach(item => {
-      this.cartTotal += (item.quantity * item.price)
-    });
+    if(localStorage.getItem("cartItems").length == 0){
+      localStorage.setItem("cartItems", "[{}]");
+    } else {
+      //console.log(localStorage.getItem("cartItems").length);
+      this.cartItems = JSON.parse(localStorage.getItem("cartItems"));
+      this.cartTotal = 0;
+      this.cartItems.forEach(item => {
+        this.cartTotal += (item.quantity * item.price)
+      });
+    }
   }
 
 }
