@@ -32,6 +32,30 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  decreaseQuantity(product){
+    for(let i in this.items){
+      if(this.items[i].id === product.id){
+        if(this.items[i].quantity > 1){
+          this.items[i].quantity--
+        }
+        localStorage.setItem("cartItems", JSON.stringify(this.items));
+        this.calculateTotal();
+        break;
+      }
+    }
+  }
+
+  increaseQuantity(product){
+    for(let i in this.items){
+      if(this.items[i].id === product.id){
+        this.items[i].quantity++
+        localStorage.setItem("cartItems", JSON.stringify(this.items));
+        this.calculateTotal();
+        break;
+      }
+    }
+  }
+
   submitCheckout(){
     this.submitted = true;
   }

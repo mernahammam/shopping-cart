@@ -17,7 +17,7 @@
         <td><h5 class="mt-0 mb-1">{{ product.title }}</h5>
           {{ product.description }}</td>
         <td>{{ product.price | currency:"EGP" }}</td>
-        <td>{{ product.quantity }}</td>
+        <td><button type="button" class="btn btn-sm btn-outline-secondary" (click)="decreaseQuantity(product)">-</button> {{ product.quantity }} <button type="button" class="btn btn-sm btn-outline-secondary" (click)="increaseQuantity(product)">+</button></td>
         <td>{{ product.price * product.quantity }}</td>
         <td><button type="button" class="btn btn-sm btn-outline-danger" (click)="removeFromCart(i)">Remove</button></td>
       </tr>
